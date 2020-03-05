@@ -27,16 +27,38 @@ const AuthStackScreen = () => (
 const ActionsStack = createStackNavigator();
 const ActionsStackScreen = () => (
   <ActionsStack.Navigator>
-    <ActionsStack.Screen name="ActionsList" component={ActionsList} />
-    <ActionsStack.Screen name="ActionDetails" component={ActionDetails} />
+    <ActionsStack.Screen
+      name="ActionsList"
+      component={ActionsList}
+      options={{ title: "Actions" }}
+    />
+    <ActionsStack.Screen
+      name="ActionDetails"
+      component={ActionDetails}
+      options={({ route }) => ({
+        title: route.params.title
+      })}
+    />
   </ActionsStack.Navigator>
 );
 
 const ContactsStack = createStackNavigator();
 const ContactsStackScreen = () => (
   <ContactsStack.Navigator>
-    <ContactsStack.Screen name="ContactsList" component={ContactsList} />
-    <ContactsStack.Screen name="ContactDetails" component={ContactDetails} />
+    <ContactsStack.Screen
+      name="ContactsList"
+      component={ContactsList}
+      options={{ title: "Contacts" }}
+    />
+    <ContactsStack.Screen
+      name="ContactDetails"
+      component={ContactDetails}
+      options={({ route }) => {
+        return {
+          title: route.params.title
+        };
+      }}
+    />
   </ContactsStack.Navigator>
 );
 
@@ -49,7 +71,7 @@ const SettingsStackScreen = () => (
 
 const AppTabs = createBottomTabNavigator();
 const AppTabsScreen = () => (
-  <AppTabs.Navigator>
+  <AppTabs.Navigator initialRouteName="Contacts">
     <AppTabs.Screen name="Actions" component={ActionsStackScreen} />
     <AppTabs.Screen name="Contacts" component={ContactsStackScreen} />
   </AppTabs.Navigator>
