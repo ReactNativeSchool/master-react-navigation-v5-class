@@ -1,4 +1,4 @@
 import React from "react";
-import Navigation from "./config/navigation";
+import Screen from "./screens/ContactsList";
 
-export default () => <Navigation />;
+export default () => <Screen />;
