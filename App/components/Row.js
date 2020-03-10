@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,6 +33,10 @@ const styles = StyleSheet.create({
   separator: {
     backgroundColor: "#ececec",
     height: 1
+  },
+  right: {
+    alignItems: "flex-end",
+    flex: 1
   }
 });
 
@@ -43,6 +48,9 @@ export const Row = ({ image, title, subtitle, onPress }) => (
     <View style={styles.content}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
+    </View>
+    <View style={styles.right}>
+      <Ionicons name="ios-arrow-forward" color="#666" size={20} />
     </View>
   </TouchableOpacity>
 );

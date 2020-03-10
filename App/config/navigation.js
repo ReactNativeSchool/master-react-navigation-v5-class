@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons";
 
 import ActionDetails from "../screens/ActionDetails";
 import ActionsList from "../screens/ActionsList";
@@ -72,8 +73,28 @@ const SettingsStackScreen = () => (
 const AppTabs = createBottomTabNavigator();
 const AppTabsScreen = () => (
   <AppTabs.Navigator initialRouteName="Contacts">
-    <AppTabs.Screen name="Actions" component={ActionsStackScreen} />
-    <AppTabs.Screen name="Contacts" component={ContactsStackScreen} />
+    <AppTabs.Screen
+      name="Contacts"
+      component={ContactsStackScreen}
+      options={{
+        tabBarIcon: props => (
+          <Ionicons name="ios-contacts" size={30} color={props.color} />
+        )
+      }}
+    />
+    <AppTabs.Screen
+      name="Actions"
+      component={ActionsStackScreen}
+      options={{
+        tabBarIcon: props => (
+          <Ionicons
+            name="ios-checkmark-circle-outline"
+            size={30}
+            color={props.color}
+          />
+        )
+      }}
+    />
   </AppTabs.Navigator>
 );
 
@@ -87,13 +108,13 @@ const AppDrawerScreen = () => (
 
 const RootStack = createStackNavigator();
 const RootStackScreen = () => {
-  const [showAuth, setShowAuth] = React.useState(false);
+  const [showAuth, setShowAuth] = React.useState(true);
 
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setShowAuth(!showAuth);
-  //   }, 1000);
-  // }, []);
+  React.useEffect(() => {
+    setTimeout(() => {
+      setShowAuth(!showAuth);
+    }, 500);
+  }, []);
 
   return (
     <RootStack.Navigator headerMode="none" mode="modal">
@@ -143,13 +164,13 @@ const RootStackScreen = () => {
 };
 
 export default () => {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(!isLoading);
-  //   }, 1000);
-  // }, []);
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(!isLoading);
+    }, 500);
+  }, []);
 
   return (
     <NavigationContainer>
