@@ -9,18 +9,18 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "expo": "~36.0.0",
-    "react": "~16.9.0",
-    "react-dom": "~16.9.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
-    "react-native-web": "~0.11.7"
+    "expo": "^41.0.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "babel-preset-expo": "~8.0.0",
-    "eslint": "^6.8.0",
-    "eslint-config-handlebarlabs": "^0.0.4",
-    "prettier": "^1.19.1"
+    "@babel/core": "~7.9.0",
+    "babel-preset-expo": "8.3.0",
+    "eslint": "^7.26.0",
+    "eslint-config-handlebarlabs": "^0.0.6",
+    "prettier": "^2.3.0"
   },
   "private": true
 }
