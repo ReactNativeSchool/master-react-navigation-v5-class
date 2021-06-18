@@ -1,4 +1,5 @@
 import React from "react";
+import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -45,9 +46,12 @@ const ActionsStackScreen = () => (
   </ActionsStack.Navigator>
 );
 
+const CreatePlaceholder = () => (
+  <View style={{ flex: 1, backgroundColor: "blue" }} />
+);
 const AppTabs = createBottomTabNavigator();
 const AppTabsScreen = () => (
-  <AppTabs.Navigator initialRouteName="Actions">
+  <AppTabs.Navigator>
     <AppTabs.Screen
       name="Contacts"
       component={ContactsStackScreen}
@@ -56,6 +60,21 @@ const AppTabsScreen = () => (
           <Ionicons name="people" size={props.size} color={props.color} />
         ),
       }}
+    />
+    <AppTabs.Screen
+      name="Create"
+      component={CreatePlaceholder}
+      options={{
+        tabBarIcon: (props) => (
+          <Ionicons name="ios-add" size={props.size} color={props.color} />
+        ),
+      }}
+      listeners={({ navigation }) => ({
+        tabPress: (e) => {
+          e.preventDefault();
+          navigation.navigate("CreateNew");
+        },
+      })}
     />
     <AppTabs.Screen
       name="Actions"
@@ -99,6 +118,7 @@ const AuthStackScreen = () => (
   </AuthStack.Navigator>
 );
 
+const CreateNew = () => <View style={{ flex: 1, backgroundColor: "red" }} />;
 const RootStack = createStackNavigator();
 const RootStackScreen = () => {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -154,6 +174,11 @@ const RootStackScreen = () => {
             };
           },
         }}
+      />
+      <RootStack.Screen
+        name="CreateNew"
+        component={CreateNew}
+        options={{ animationEnabled: true }}
       />
     </RootStack.Navigator>
   );
