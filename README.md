@@ -7,11 +7,11 @@ You'll need to have [Expo](https://expo.io/learn) installed on your machine in o
 ## Installation
 
 - `git clone https://github.com/ReactNativeSchool/master-react-navigation-v5-class.git`
-- `yarn install` / `npm install`
+- `yarn install`
 
 ## Running
 
-- `yarn run ios`/`npm run ios` or `yarn run android`/`npm run android`
+- `yarn run ios` or `yarn run android`
 
 ---
 
