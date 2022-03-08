@@ -13,6 +13,7 @@ import Settings from "../screens/Settings";
 import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
 import Loading from "../screens/Loading";
+import Modal from "../screens/Modal";
 
 const ContactsStack = createStackNavigator();
 const ContactsStackScreen = () => (
@@ -46,7 +47,7 @@ const ActionsStackScreen = () => (
 
 const AppTabs = createBottomTabNavigator();
 const AppTabsScreen = () => (
-  <AppTabs.Navigator>
+  <AppTabs.Navigator initialRouteName="Actions">
     <AppTabs.Screen
       name="Contacts"
       component={ContactsStackScreen}
@@ -98,7 +99,8 @@ const AuthStackScreen = () => (
   </AuthStack.Navigator>
 );
 
-export default () => {
+const RootStack = createStackNavigator();
+const RootStackScreen = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [user, setUser] = React.useState(null);
 
@@ -110,14 +112,31 @@ export default () => {
   }, []);
 
   return (
-    <NavigationContainer>
+    <RootStack.Navigator
+      headerMode="none"
+      screenOptions={{ animationEnabled: false }}
+      mode="modal"
+    >
       {isLoading ? (
-        <Loading />
+        <RootStack.Screen name="Loading" component={Loading} />
       ) : user ? (
-        <AppDrawerScreen />
+        <RootStack.Screen name="AppDrawerScreen" component={AppDrawerScreen} />
       ) : (
-        <AuthStackScreen />
+        <RootStack.Screen name="AuthStackScreen" component={AuthStackScreen} />
       )}
+      <RootStack.Screen
+        name="Modal"
+        component={Modal}
+        options={{ animationEnabled: true }}
+      />
+    </RootStack.Navigator>
+  );
+};
+
+export default () => {
+  return (
+    <NavigationContainer>
+      <RootStackScreen />
     </NavigationContainer>
   );
 };
